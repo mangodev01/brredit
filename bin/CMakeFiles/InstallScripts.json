@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/illia/proj/games/brredit/bin/cmake_install.cmake",
+		"/home/illia/proj/games/brredit/bin/lib/raylib/cmake_install.cmake",
+		"/home/illia/proj/games/brredit/bin/lib/raylib/raylib/cmake_install.cmake",
+		"/home/illia/proj/games/brredit/bin/lib/raylib/raylib/external/glfw/cmake_install.cmake",
+		"/home/illia/proj/games/brredit/bin/lib/raylib/raylib/external/glfw/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

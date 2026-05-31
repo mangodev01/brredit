@@ -1,0 +1,2 @@
+/usr/bin/ar qc librlImGui.a CMakeFiles/rlImGui.dir/lib/rlImGui/rlImGui.cpp.o
+/usr/bin/ranlib librlImGui.a
