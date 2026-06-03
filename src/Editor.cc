@@ -156,17 +156,27 @@ namespace BrrEdit {
 		ImGui::PopFont();
 
 		if (ImGui::BeginPopup("add")) {
-			if (ImGui::MenuItem("Object")) {
+
+			ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[1]);
+			if (ImGui::MenuItem(ICON_FA_CUBE)) {
 				m_Room.AddObject();
 			}
+			ImGui::PopFont();
 
-			if (ImGui::MenuItem("Mesh")) {
+
+			ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[1]);
+			if (ImGui::MenuItem(ICON_FA_BORDER_ALL)) {
 				m_Room.AddMesh();
 			}
+			ImGui::PopFont();
 
-			if (ImGui::MenuItem("Sound")) {
+
+			ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[1]);
+			if (ImGui::MenuItem(ICON_FA_VOLUME_HIGH)) {
 				m_Room.AddSound();
 			}
+			ImGui::PopFont();
+
 
 			ImGui::EndPopup();
 		}
