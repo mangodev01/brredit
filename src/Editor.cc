@@ -1,8 +1,12 @@
 #include "Editor.hh"
 
+#include "GameObject.hh"
 #include "Globals.hh"
+#include <format>
+#include <raymath.h>
 
 #include <algorithm>
+#include <cfloat>
 #include <raylib.h>
 #include <rlImGui.h>
 
@@ -10,11 +14,13 @@
 
 namespace BrrEdit {
 	Editor::Editor(int width, int height) : m_Width(width), m_Height(height) {
-		SetTraceLogLevel(LOG_NONE);
+		// SetTraceLogLevel(LOG_NONE);
 
 		InitWindow(1920, 1080, "brredit");
 
 		SetWindowState(FLAG_WINDOW_RESIZABLE);
+
+		InitAudioDevice();
 
 		m_ViewportCam = { 0 };
 		m_ViewportCam.position = { 10.0f, 10.0f, 10.0f };
@@ -31,13 +37,24 @@ namespace BrrEdit {
 		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 		io.Fonts->Clear();
-		io.Fonts->AddFontFromFileTTF("Roboto/Roboto-Medium.ttf", 16.0f);
+		auto roboto = io.Fonts->AddFontFromFileTTF("Roboto/Roboto-Medium.ttf", 16.0f);
+
+		static const ImWchar iconRanges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
+
+		ImFontConfig cfg;
+		cfg.MergeMode = true;
+		cfg.PixelSnapH = true;
+
+		io.Fonts->AddFontFromFileTTF(
+				"Roboto/fa.ttf",
+				16.0f,
+				&cfg,
+				iconRanges
+				);
+
+		io.FontDefault = roboto;
 
 		rlImGuiEndInitImGui();
-
-		g_PbrShader = LoadShader("src/pbr.vs", "src/pbr.fs");
-
-		SetupPbr();
 
 		ApplyCatppuccinMocha();
 
@@ -45,12 +62,16 @@ namespace BrrEdit {
 
 		SetTextureFilter(m_Viewport.texture, TEXTURE_FILTER_BILINEAR);
 
+		rlSetLineWidth(10);
+
 		while (!WindowShouldClose()) {
+			Update();
+
 			BeginDrawing();
-				ClearBackground(DARKGRAY);
+			ClearBackground(DARKGRAY);
 
 
-				RenderImGui();
+			RenderImGui();
 			EndDrawing();
 		}
 	}
@@ -60,11 +81,41 @@ namespace BrrEdit {
 
 		rlImGuiShutdown();
 
+		CloseAudioDevice();
+
 		CloseWindow();
 	}
 
 	void Editor::RenderImGui() {
+		// Snapshot key state BEFORE rlImGuiBegin consumes IsKeyPressed events
+		bool tabPressed = IsKeyPressed(KEY_TAB);
+		bool fPressed   = IsKeyPressed(KEY_F);
+
 		rlImGuiBegin();
+
+		if (ImGui::BeginMainMenuBar()) {
+			if (ImGui::MenuItem("Save")) {
+				m_Room.Save();
+			}
+
+			if (ImGui::MenuItem("Load")) {
+				m_Room.Load();
+			}
+
+			ImGui::EndMainMenuBar();
+		}
+
+
+		ImGuiIO& io = ImGui::GetIO();
+
+		if (g_CursorDisabled) {
+			// When cursor is locked, prevent ImGui from overriding cursor and
+			// push mouse far away to avoid spurious hover/click on UI widgets
+			io.ConfigFlags |= ImGuiConfigFlags_NoMouseCursorChange;
+			io.AddMousePosEvent(-FLT_MAX, -FLT_MAX);
+		} else {
+			io.ConfigFlags &= ~ImGuiConfigFlags_NoMouseCursorChange;
+		}
 
 		ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport());
 
@@ -73,20 +124,23 @@ namespace BrrEdit {
 
 		ImGui::Begin("Viewport");
 
+		// mouse locking
+		if (ImGui::IsWindowHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left)) {
+			DisableCursor();
+			g_CursorDisabled = true;
+		}
+
 		RenderRaylibWrapper();
 
 		// Render scene into texture
 		BeginTextureMode(m_Viewport);
 
-		RenderRaylib();
+		RenderRaylib(tabPressed, fPressed);
 
 		EndTextureMode();
 
 		rlImGuiImageRenderTextureFit(&m_Viewport, true);
 
-		ImGui::End();
-
-		ImGui::Begin("Files");
 		ImGui::End();
 
 		rlImGuiEnd();
@@ -95,7 +149,7 @@ namespace BrrEdit {
 	void Editor::Hierarchy() {
 		ImGui::Begin("Hierarchy");
 
-		if (ImGui::Button("Add")) {
+		if (ImGui::Button("+", {30,30})) {
 			ImGui::OpenPopup("add");
 		}
 
@@ -109,9 +163,44 @@ namespace BrrEdit {
 			}
 
 			if (ImGui::MenuItem("Sound")) {
+				m_Room.AddSound();
 			}
 
 			ImGui::EndPopup();
+		}
+
+		for (const GameObject& gameObj : m_Room.Objects())
+		{
+			auto a = std::format("{}##{}", gameObj.Name, gameObj.Id);
+			auto nuke = std::format("{}##{}_nuke", ICON_FA_TRASH, gameObj.Id);
+
+			float btnWidth = ImGui::GetFrameHeight();
+			float spacing = ImGui::GetStyle().ItemSpacing.x;
+
+			float selectableWidth =
+				ImGui::GetContentRegionAvail().x - btnWidth - spacing;
+
+			ImGui::PushItemFlag(ImGuiItemFlags_NoTabStop, true);
+
+			if (ImGui::Selectable(a.c_str(), gameObj.Id == m_Room.GetSelectedId(), 0, ImVec2(selectableWidth, 0)))
+			{
+				m_Room.Select(gameObj.Id);
+			}
+
+			ImGui::PopItemFlag();
+
+			ImGui::SameLine();
+
+			ImGui::PushStyleColor(ImGuiCol_ButtonHovered, {.8, 0, 0, 1});
+			ImGui::PushStyleColor(ImGuiCol_ButtonActive, {.6, 0, 0, 1});
+			ImGui::PushStyleColor(ImGuiCol_Button, {1, 0, 0, 1});
+
+			if (ImGui::SmallButton(nuke.c_str()))
+			{
+				m_Room.Nuke(gameObj.Id);
+			}
+
+			ImGui::PopStyleColor(3);
 		}
 
 		ImGui::End();
@@ -198,6 +287,8 @@ namespace BrrEdit {
 				ColorEdit(mesh->Col);
 
 				ImGui::InputText("Mesh ID", mesh->MeshId, sizeof(mesh->MeshId));
+			} else if (Sound* sound = std::get_if<Sound>(&sel->Obj)) {
+				ImGui::InputText("Sound ID", sound->SoundId, sizeof(sound->SoundId));
 			}
 		}
 
@@ -236,11 +327,54 @@ namespace BrrEdit {
 		}
 	}
 
-	void Editor::RenderRaylib() {
+	void Editor::RenderRaylib(bool tabPressed, bool fPressed) {
 		ClearBackground(BLACK);
 
-		if (IsKeyPressed(KEY_F)) {
+		if (fPressed) {
 			g_Wireframe = !g_Wireframe;
+		}
+
+		Vector2 mouse = g_CursorDisabled ? GetMouseDelta() : Vector2 { 0, 0 };
+
+		Vector3 dir   = Vector3Subtract(m_ViewportCam.target, m_ViewportCam.position);
+		Vector3 right = Vector3Normalize(Vector3CrossProduct(dir, m_ViewportCam.up));
+
+		dir = Vector3RotateByAxisAngle(dir, { 0, 1, 0 }, -mouse.x * c_Sensitivity);
+
+		Vector3 pitched = Vector3RotateByAxisAngle(dir, right, -mouse.y * c_Sensitivity);
+		if (fabsf(Vector3DotProduct(Vector3Normalize(pitched), { 0, 1, 0 })) < 0.99f)
+			dir = pitched;
+
+		m_ViewportCam.target = Vector3Add(m_ViewportCam.position, dir);
+
+		Vector3 forward = Vector3Normalize(dir);
+
+		auto move = [&](Vector3 delta) {
+			m_ViewportCam.position = Vector3Add(m_ViewportCam.position, delta);
+			m_ViewportCam.target   = Vector3Add(m_ViewportCam.target,   delta);
+		};
+
+		if (tabPressed) {
+			EnableCursor();
+			g_CursorDisabled = false;
+		}
+
+		float dt = GetFrameTime();
+
+		if (g_CursorDisabled) {
+			const float speed = IsKeyDown(KEY_CAPS_LOCK) ? c_FasterSpeed : c_Speed;
+
+			if (IsKeyDown(KEY_W))          move(Vector3Scale(forward,  speed * dt));
+			if (IsKeyDown(KEY_S))          move(Vector3Scale(forward, -speed * dt));
+			if (IsKeyDown(KEY_A))          move(Vector3Scale(right,   -speed * dt));
+			if (IsKeyDown(KEY_D))          move(Vector3Scale(right,    speed * dt));
+			if (IsKeyDown(KEY_SPACE))      move({ 0,  speed * dt, 0 });
+			if (IsKeyDown(KEY_LEFT_SHIFT)) move({ 0, -speed * dt, 0 });
+
+			if (IsKeyDown(KEY_ZERO)) {
+				m_ViewportCam.position = { 10.0f, 10.0f, 10.0f };
+				m_ViewportCam.target   = {  0.0f,  0.0f,  0.0f };
+			}
 		}
 
 		// account for 2x downscaling
@@ -248,13 +382,32 @@ namespace BrrEdit {
 
 		BeginMode3D(m_ViewportCam);
 
-		DrawGrid(10, 1);
 
-		float camPos[3] = { m_ViewportCam.position.x, m_ViewportCam.position.y, m_ViewportCam.position.z };
-		SetShaderValue(g_PbrShader, g_PbrShader.locs[SHADER_LOC_VECTOR_VIEW], camPos, SHADER_UNIFORM_VEC3);
+		this->DrawGrid(100, 1);
 
 		m_Room.Render();
 
 		EndMode3D();
+	}
+
+	void Editor::DrawGrid(int slices, float spacing) {
+		int halfSlices = slices/2;
+
+		rlBegin(RL_LINES);
+		for (int i = -halfSlices; i <= halfSlices; i++)
+		{
+			rlColor4ub(GRAY.r, GRAY.g, GRAY.b, 138);
+
+			rlVertex3f((float)i*spacing, 0.0f, (float)-halfSlices*spacing);
+			rlVertex3f((float)i*spacing, 0.0f, (float)halfSlices*spacing);
+
+			rlVertex3f((float)-halfSlices*spacing, 0.0f, (float)i*spacing);
+			rlVertex3f((float)halfSlices*spacing, 0.0f, (float)i*spacing);
+		}
+		rlEnd();
+	}
+
+	void Editor::Update() {
+		m_Room.Update(m_ViewportCam);
 	}
 }

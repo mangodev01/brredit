@@ -3,6 +3,7 @@ brredit: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o \
   CMakeFiles/brredit.dir/src/Editor.cc.o \
+  CMakeFiles/brredit.dir/src/File.cc.o \
   CMakeFiles/brredit.dir/src/GameObject.cc.o \
   CMakeFiles/brredit.dir/src/main.cc.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/libpthread.a \
@@ -78,6 +79,8 @@ brredit: \
 /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o:
 
 CMakeFiles/brredit.dir/src/Editor.cc.o:
+
+CMakeFiles/brredit.dir/src/File.cc.o:
 
 CMakeFiles/brredit.dir/src/GameObject.cc.o:
 

@@ -7,3 +7,6 @@
 [submodule "lib/imgui"]
 	path = lib/imgui
 	url = https://github.com/ocornut/imgui/
+[submodule "lib/fa"]
+	path = lib/fa
+	url = https://github.com/xo1337/FontAwesome

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
 
-CXX_INCLUDES = -I/home/illia/proj/games/brredit/lib/raylib/src -I/home/illia/proj/games/brredit/lib/imgui -I/home/illia/proj/games/brredit/lib/rlImGui
+CXX_INCLUDES = -I/home/illia/proj/games/brredit/lib/raylib/src -I/home/illia/proj/games/brredit/lib/imgui -I/home/illia/proj/games/brredit/lib/rlImGui -I/home/illia/proj/games/brredit/lib
 
 CXX_FLAGS = -g -std=gnu++23
 

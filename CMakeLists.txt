@@ -13,7 +13,7 @@ add_executable(brredit ${SRC})
 add_library(imgui lib/imgui/imgui.cpp lib/imgui/imgui_demo.cpp lib/imgui/imgui_draw.cpp lib/imgui/imgui_tables.cpp lib/imgui/imgui_widgets.cpp)
 
 # Example: adding include directories
-include_directories(lib/raylib/src lib/imgui lib/rlImGui)
+include_directories(lib/raylib/src lib/imgui lib/rlImGui lib)
 
 add_library(rlImGui lib/rlImGui/rlImGui.cpp)
 

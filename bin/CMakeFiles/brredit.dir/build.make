@@ -86,10 +86,24 @@ CMakeFiles/brredit.dir/src/Editor.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/brredit.dir/src/Editor.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/illia/proj/games/brredit/src/Editor.cc -o CMakeFiles/brredit.dir/src/Editor.cc.s
 
+CMakeFiles/brredit.dir/src/File.cc.o: CMakeFiles/brredit.dir/flags.make
+CMakeFiles/brredit.dir/src/File.cc.o: /home/illia/proj/games/brredit/src/File.cc
+CMakeFiles/brredit.dir/src/File.cc.o: CMakeFiles/brredit.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/illia/proj/games/brredit/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/brredit.dir/src/File.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/brredit.dir/src/File.cc.o -MF CMakeFiles/brredit.dir/src/File.cc.o.d -o CMakeFiles/brredit.dir/src/File.cc.o -c /home/illia/proj/games/brredit/src/File.cc
+
+CMakeFiles/brredit.dir/src/File.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/brredit.dir/src/File.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/illia/proj/games/brredit/src/File.cc > CMakeFiles/brredit.dir/src/File.cc.i
+
+CMakeFiles/brredit.dir/src/File.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/brredit.dir/src/File.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/illia/proj/games/brredit/src/File.cc -o CMakeFiles/brredit.dir/src/File.cc.s
+
 CMakeFiles/brredit.dir/src/GameObject.cc.o: CMakeFiles/brredit.dir/flags.make
 CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/GameObject.cc
 CMakeFiles/brredit.dir/src/GameObject.cc.o: CMakeFiles/brredit.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/illia/proj/games/brredit/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/brredit.dir/src/GameObject.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/illia/proj/games/brredit/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/brredit.dir/src/GameObject.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/brredit.dir/src/GameObject.cc.o -MF CMakeFiles/brredit.dir/src/GameObject.cc.o.d -o CMakeFiles/brredit.dir/src/GameObject.cc.o -c /home/illia/proj/games/brredit/src/GameObject.cc
 
 CMakeFiles/brredit.dir/src/GameObject.cc.i: cmake_force
@@ -103,7 +117,7 @@ CMakeFiles/brredit.dir/src/GameObject.cc.s: cmake_force
 CMakeFiles/brredit.dir/src/main.cc.o: CMakeFiles/brredit.dir/flags.make
 CMakeFiles/brredit.dir/src/main.cc.o: /home/illia/proj/games/brredit/src/main.cc
 CMakeFiles/brredit.dir/src/main.cc.o: CMakeFiles/brredit.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/illia/proj/games/brredit/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/brredit.dir/src/main.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/illia/proj/games/brredit/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/brredit.dir/src/main.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/brredit.dir/src/main.cc.o -MF CMakeFiles/brredit.dir/src/main.cc.o.d -o CMakeFiles/brredit.dir/src/main.cc.o -c /home/illia/proj/games/brredit/src/main.cc
 
 CMakeFiles/brredit.dir/src/main.cc.i: cmake_force
@@ -117,6 +131,7 @@ CMakeFiles/brredit.dir/src/main.cc.s: cmake_force
 # Object files for target brredit
 brredit_OBJECTS = \
 "CMakeFiles/brredit.dir/src/Editor.cc.o" \
+"CMakeFiles/brredit.dir/src/File.cc.o" \
 "CMakeFiles/brredit.dir/src/GameObject.cc.o" \
 "CMakeFiles/brredit.dir/src/main.cc.o"
 
@@ -124,6 +139,7 @@ brredit_OBJECTS = \
 brredit_EXTERNAL_OBJECTS =
 
 brredit: CMakeFiles/brredit.dir/src/Editor.cc.o
+brredit: CMakeFiles/brredit.dir/src/File.cc.o
 brredit: CMakeFiles/brredit.dir/src/GameObject.cc.o
 brredit: CMakeFiles/brredit.dir/src/main.cc.o
 brredit: CMakeFiles/brredit.dir/build.make
@@ -141,7 +157,7 @@ brredit: /usr/lib/libICE.so
 brredit: /usr/lib/libX11.so
 brredit: /usr/lib/libXext.so
 brredit: CMakeFiles/brredit.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/illia/proj/games/brredit/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable brredit"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/illia/proj/games/brredit/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable brredit"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/brredit.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

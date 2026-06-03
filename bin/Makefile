@@ -427,6 +427,30 @@ src/Editor.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/Editor.cc.s
 .PHONY : src/Editor.cc.s
 
+src/File.o: src/File.cc.o
+.PHONY : src/File.o
+
+# target to build an object file
+src/File.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/File.cc.o
+.PHONY : src/File.cc.o
+
+src/File.i: src/File.cc.i
+.PHONY : src/File.i
+
+# target to preprocess a source file
+src/File.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/File.cc.i
+.PHONY : src/File.cc.i
+
+src/File.s: src/File.cc.s
+.PHONY : src/File.s
+
+# target to generate assembly for a file
+src/File.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/File.cc.s
+.PHONY : src/File.cc.s
+
 src/GameObject.o: src/GameObject.cc.o
 .PHONY : src/GameObject.o
 
@@ -516,6 +540,9 @@ help:
 	@echo "... src/Editor.o"
 	@echo "... src/Editor.i"
 	@echo "... src/Editor.s"
+	@echo "... src/File.o"
+	@echo "... src/File.i"
+	@echo "... src/File.s"
 	@echo "... src/GameObject.o"
 	@echo "... src/GameObject.i"
 	@echo "... src/GameObject.s"

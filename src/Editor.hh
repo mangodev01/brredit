@@ -12,8 +12,12 @@ namespace BrrEdit {
 			~Editor();
 
 		private:
+			void Update();
+
+			void DrawGrid(int slices, float spacing);
+
 			void RenderImGui();
-			void RenderRaylib();
+			void RenderRaylib(bool tabPressed, bool fPressed);
 			void RenderRaylibWrapper();
 
 			void Hierarchy();

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfa.a CMakeFiles/fa.dir/lib/fa/font_awesome.cpp.o
+/usr/bin/ranlib libfa.a
