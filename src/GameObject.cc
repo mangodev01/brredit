@@ -12,6 +12,8 @@
 #include <rlgl.h>
 #include <variant>
 
+#include <pfd.h>
+
 namespace BrrEdit {
 	Room::Room() : m_Objs({}) {}
 
@@ -122,11 +124,11 @@ namespace BrrEdit {
 		strcpy(name, "Mesh ");
 		strcat(name, std::to_string(m_Objs.size()).c_str());
 		m_Objs.emplace_back(
-				m_Objs.size(),
-				name,
-				Transform::Default(),
-				std::variant<Mesh, Sound, Object>{ Mesh(Vec3b::Max(), "model") }
-				);
+			m_Objs.size(),
+			name,
+			Transform::Default(),
+			std::variant<Mesh, Sound, Object>{ Mesh(Vec3b::Max(), "model") }
+		);
 	}
 
 	void Room::AddObject() {
@@ -135,11 +137,11 @@ namespace BrrEdit {
 		strcpy(name, "Object ");
 		strcat(name, std::to_string(m_Objs.size()).c_str());
 		m_Objs.emplace_back(
-				m_Objs.size(),
-				name,
-				Transform::Default(),
-				std::variant<Mesh, Sound, Object>{ Object { .Col = Vec3b::Max() } }
-				);
+			m_Objs.size(),
+			name,
+			Transform::Default(),
+			std::variant<Mesh, Sound, Object>{ Object { .Col = Vec3b::Max() } }
+		);
 	}
 
 	void Room::AddSound() {
@@ -148,31 +150,11 @@ namespace BrrEdit {
 		strcpy(name, "Sound ");
 		strcat(name, std::to_string(m_Objs.size()).c_str());
 		m_Objs.emplace_back(
-				m_Objs.size(),
-				name,
-				Transform::Default(),
-				std::variant<Mesh, Sound, Object>{ Sound("sound") }
-				);
-	}
-
-	void Room::AddObject() {
-		m_Selected = m_Objs.size();
-		m_Objs.emplace_back(
-				m_Objs.size(),
-				std::format("Object {}", m_Objs.size()).c_str(),
-				Transform::Default(),
-				std::variant<Mesh, Sound, Object>{ Object { .Col = Vec3b::Max() } }
-				);
-	}
-
-	void Room::AddSound() {
-		m_Selected = m_Objs.size();
-		m_Objs.emplace_back(
-				m_Objs.size(),
-				std::format("Sound {}", m_Objs.size()).c_str(),
-				Transform::Default(),
-				std::variant<Mesh, Sound, Object>{ Sound("sound") }
-				);
+			m_Objs.size(),
+			name,
+			Transform::Default(),
+			std::variant<Mesh, Sound, Object>{ Sound("sound") }
+		);
 	}
 
 	GameObject* Room::GetSelected() {
@@ -205,7 +187,18 @@ namespace BrrEdit {
 	}
 
 	void Room::Save() {
-		FileWriter writer("latest.brr");
+		std::string path;
+		if (pfd::settings::available()) {
+			pfd::save_file saveFileDiag = pfd::save_file("save location", pfd::path::home(),
+				{ "Backrooms Room (.brr)", "*.brr",
+				  "All Files", "*" });
+
+			path = saveFileDiag.result();
+		} else {
+			path = "latest.brr";
+		}
+
+		FileWriter writer(path);
 
 		writer.Str("brr");
 
@@ -246,6 +239,18 @@ namespace BrrEdit {
 	}
 
 	void Room::Load() {
+		std::string path;
+
+		if (pfd::settings::available()) {
+			pfd::open_file openFileDiag = pfd::open_file("save location", pfd::path::home(),
+				{ "Backrooms Room (.brr)", "*.brr",
+				  "All Files", "*" });
+
+			path = openFileDiag.result().at(0);
+		} else {
+			path = "latest.brr";
+		}
+
 		FileReader reader("latest.brr");
 
 		if (reader.Str() != "brr") {

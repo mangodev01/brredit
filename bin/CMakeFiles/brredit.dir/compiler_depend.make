@@ -583,6 +583,7 @@ CMakeFiles/brredit.dir/src/File.cc.o: /home/illia/proj/games/brredit/src/File.cc
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdint.h
 
 CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/GameObject.cc \
+  /home/illia/proj/games/brredit/lib/pfd.h \
   /home/illia/proj/games/brredit/lib/raylib/src/raylib.h \
   /home/illia/proj/games/brredit/lib/raylib/src/raymath.h \
   /home/illia/proj/games/brredit/lib/raylib/src/rlgl.h \
@@ -603,15 +604,22 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/asm/types.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
+  /usr/include/bits/cloexec.h \
+  /usr/include/bits/confname.h \
   /usr/include/bits/cpu-set.h \
   /usr/include/bits/endian.h \
   /usr/include/bits/endianness.h \
+  /usr/include/bits/environments.h \
   /usr/include/bits/errno.h \
+  /usr/include/bits/fcntl-linux.h \
+  /usr/include/bits/fcntl.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
   /usr/include/bits/flt-eval-method.h \
   /usr/include/bits/fp-fast.h \
   /usr/include/bits/fp-logb.h \
+  /usr/include/bits/getopt_core.h \
+  /usr/include/bits/getopt_posix.h \
   /usr/include/bits/iscanonical.h \
   /usr/include/bits/libc-header-start.h \
   /usr/include/bits/libm-simd-decl-stubs.h \
@@ -622,12 +630,30 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/bits/mathcalls-macros.h \
   /usr/include/bits/mathcalls-narrow.h \
   /usr/include/bits/mathcalls.h \
+  /usr/include/bits/openat2.h \
+  /usr/include/bits/posix_opt.h \
   /usr/include/bits/pthread_stack_min-dynamic.h \
   /usr/include/bits/pthreadtypes-arch.h \
   /usr/include/bits/pthreadtypes.h \
   /usr/include/bits/sched.h \
   /usr/include/bits/select.h \
   /usr/include/bits/setjmp.h \
+  /usr/include/bits/sigaction.h \
+  /usr/include/bits/sigcontext.h \
+  /usr/include/bits/sigevent-consts.h \
+  /usr/include/bits/siginfo-arch.h \
+  /usr/include/bits/siginfo-consts-arch.h \
+  /usr/include/bits/siginfo-consts.h \
+  /usr/include/bits/signal_ext.h \
+  /usr/include/bits/signum-arch.h \
+  /usr/include/bits/signum-generic.h \
+  /usr/include/bits/sigstack.h \
+  /usr/include/bits/sigstksz.h \
+  /usr/include/bits/sigthread.h \
+  /usr/include/bits/ss_flags.h \
+  /usr/include/bits/stat.h \
+  /usr/include/bits/statx-generic.h \
+  /usr/include/bits/statx.h \
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
@@ -635,6 +661,7 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
   /usr/include/bits/struct_rwlock.h \
+  /usr/include/bits/struct_stat.h \
   /usr/include/bits/thread-shared-types.h \
   /usr/include/bits/time.h \
   /usr/include/bits/time64.h \
@@ -648,17 +675,28 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/bits/types/__locale_t.h \
   /usr/include/bits/types/__mbstate_t.h \
   /usr/include/bits/types/__sigset_t.h \
+  /usr/include/bits/types/__sigval_t.h \
   /usr/include/bits/types/clock_t.h \
   /usr/include/bits/types/clockid_t.h \
   /usr/include/bits/types/cookie_io_functions_t.h \
   /usr/include/bits/types/error_t.h \
+  /usr/include/bits/types/idtype_t.h \
   /usr/include/bits/types/locale_t.h \
   /usr/include/bits/types/mbstate_t.h \
+  /usr/include/bits/types/sig_atomic_t.h \
+  /usr/include/bits/types/sigevent_t.h \
+  /usr/include/bits/types/siginfo_t.h \
   /usr/include/bits/types/sigset_t.h \
+  /usr/include/bits/types/sigval_t.h \
+  /usr/include/bits/types/stack_t.h \
   /usr/include/bits/types/struct_FILE.h \
   /usr/include/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/bits/types/struct_iovec.h \
   /usr/include/bits/types/struct_itimerspec.h \
   /usr/include/bits/types/struct_sched_param.h \
+  /usr/include/bits/types/struct_sigstack.h \
+  /usr/include/bits/types/struct_statx.h \
+  /usr/include/bits/types/struct_statx_timestamp.h \
   /usr/include/bits/types/struct_timespec.h \
   /usr/include/bits/types/struct_timeval.h \
   /usr/include/bits/types/struct_tm.h \
@@ -667,6 +705,7 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/bits/types/wint_t.h \
   /usr/include/bits/typesizes.h \
   /usr/include/bits/uintn-identity.h \
+  /usr/include/bits/unistd_ext.h \
   /usr/include/bits/waitflags.h \
   /usr/include/bits/waitstatus.h \
   /usr/include/bits/wchar.h \
@@ -674,6 +713,7 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/bits/wordsize.h \
   /usr/include/c++/16.1.1/algorithm \
   /usr/include/c++/16.1.1/array \
+  /usr/include/c++/16.1.1/atomic \
   /usr/include/c++/16.1.1/backward/auto_ptr.h \
   /usr/include/c++/16.1.1/backward/binders.h \
   /usr/include/c++/16.1.1/bit \
@@ -684,19 +724,24 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/c++/16.1.1/bits/allocator.h \
   /usr/include/c++/16.1.1/bits/atomic_base.h \
   /usr/include/c++/16.1.1/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/16.1.1/bits/atomic_timed_wait.h \
   /usr/include/c++/16.1.1/bits/atomic_wait.h \
   /usr/include/c++/16.1.1/bits/basic_ios.h \
   /usr/include/c++/16.1.1/bits/basic_ios.tcc \
   /usr/include/c++/16.1.1/bits/basic_string.h \
   /usr/include/c++/16.1.1/bits/basic_string.tcc \
+  /usr/include/c++/16.1.1/bits/binders.h \
   /usr/include/c++/16.1.1/bits/char_traits.h \
   /usr/include/c++/16.1.1/bits/charconv.h \
   /usr/include/c++/16.1.1/bits/chrono.h \
+  /usr/include/c++/16.1.1/bits/chrono_io.h \
   /usr/include/c++/16.1.1/bits/codecvt.h \
   /usr/include/c++/16.1.1/bits/concept_check.h \
   /usr/include/c++/16.1.1/bits/cpp_type_traits.h \
   /usr/include/c++/16.1.1/bits/cxxabi_forced.h \
   /usr/include/c++/16.1.1/bits/cxxabi_init_exception.h \
+  /usr/include/c++/16.1.1/bits/deque.tcc \
+  /usr/include/c++/16.1.1/bits/elements_of.h \
   /usr/include/c++/16.1.1/bits/enable_special_members.h \
   /usr/include/c++/16.1.1/bits/erase_if.h \
   /usr/include/c++/16.1.1/bits/exception.h \
@@ -713,6 +758,7 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/c++/16.1.1/bits/hash_bytes.h \
   /usr/include/c++/16.1.1/bits/hashtable.h \
   /usr/include/c++/16.1.1/bits/hashtable_policy.h \
+  /usr/include/c++/16.1.1/bits/intcmp.h \
   /usr/include/c++/16.1.1/bits/invoke.h \
   /usr/include/c++/16.1.1/bits/ios_base.h \
   /usr/include/c++/16.1.1/bits/istream.tcc \
@@ -754,13 +800,28 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/c++/16.1.1/bits/ranges_uninitialized.h \
   /usr/include/c++/16.1.1/bits/ranges_util.h \
   /usr/include/c++/16.1.1/bits/refwrap.h \
+  /usr/include/c++/16.1.1/bits/regex.h \
+  /usr/include/c++/16.1.1/bits/regex.tcc \
+  /usr/include/c++/16.1.1/bits/regex_automaton.h \
+  /usr/include/c++/16.1.1/bits/regex_automaton.tcc \
+  /usr/include/c++/16.1.1/bits/regex_compiler.h \
+  /usr/include/c++/16.1.1/bits/regex_compiler.tcc \
+  /usr/include/c++/16.1.1/bits/regex_constants.h \
+  /usr/include/c++/16.1.1/bits/regex_error.h \
+  /usr/include/c++/16.1.1/bits/regex_executor.h \
+  /usr/include/c++/16.1.1/bits/regex_executor.tcc \
+  /usr/include/c++/16.1.1/bits/regex_scanner.h \
+  /usr/include/c++/16.1.1/bits/regex_scanner.tcc \
   /usr/include/c++/16.1.1/bits/requires_hosted.h \
+  /usr/include/c++/16.1.1/bits/semaphore_base.h \
   /usr/include/c++/16.1.1/bits/shared_ptr.h \
   /usr/include/c++/16.1.1/bits/shared_ptr_atomic.h \
   /usr/include/c++/16.1.1/bits/shared_ptr_base.h \
   /usr/include/c++/16.1.1/bits/specfun.h \
   /usr/include/c++/16.1.1/bits/sstream.tcc \
   /usr/include/c++/16.1.1/bits/std_abs.h \
+  /usr/include/c++/16.1.1/bits/std_function.h \
+  /usr/include/c++/16.1.1/bits/std_thread.h \
   /usr/include/c++/16.1.1/bits/stdexcept_except.h \
   /usr/include/c++/16.1.1/bits/stdexcept_throw.h \
   /usr/include/c++/16.1.1/bits/stdexcept_throwfwd.h \
@@ -768,20 +829,30 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/c++/16.1.1/bits/stl_algobase.h \
   /usr/include/c++/16.1.1/bits/stl_bvector.h \
   /usr/include/c++/16.1.1/bits/stl_construct.h \
+  /usr/include/c++/16.1.1/bits/stl_deque.h \
   /usr/include/c++/16.1.1/bits/stl_function.h \
   /usr/include/c++/16.1.1/bits/stl_heap.h \
   /usr/include/c++/16.1.1/bits/stl_iterator.h \
   /usr/include/c++/16.1.1/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/16.1.1/bits/stl_iterator_base_types.h \
+  /usr/include/c++/16.1.1/bits/stl_map.h \
+  /usr/include/c++/16.1.1/bits/stl_multimap.h \
+  /usr/include/c++/16.1.1/bits/stl_multiset.h \
   /usr/include/c++/16.1.1/bits/stl_pair.h \
   /usr/include/c++/16.1.1/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/16.1.1/bits/stl_relops.h \
+  /usr/include/c++/16.1.1/bits/stl_set.h \
+  /usr/include/c++/16.1.1/bits/stl_stack.h \
   /usr/include/c++/16.1.1/bits/stl_tempbuf.h \
+  /usr/include/c++/16.1.1/bits/stl_tree.h \
   /usr/include/c++/16.1.1/bits/stl_uninitialized.h \
   /usr/include/c++/16.1.1/bits/stl_vector.h \
+  /usr/include/c++/16.1.1/bits/stream_iterator.h \
   /usr/include/c++/16.1.1/bits/streambuf.tcc \
   /usr/include/c++/16.1.1/bits/streambuf_iterator.h \
   /usr/include/c++/16.1.1/bits/string_view.tcc \
   /usr/include/c++/16.1.1/bits/stringfwd.h \
+  /usr/include/c++/16.1.1/bits/this_thread_sleep.h \
   /usr/include/c++/16.1.1/bits/unicode-data.h \
   /usr/include/c++/16.1.1/bits/unicode.h \
   /usr/include/c++/16.1.1/bits/uniform_int_dist.h \
@@ -792,14 +863,17 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/c++/16.1.1/bits/utility.h \
   /usr/include/c++/16.1.1/bits/vector.tcc \
   /usr/include/c++/16.1.1/bits/version.h \
+  /usr/include/c++/16.1.1/bitset \
   /usr/include/c++/16.1.1/cctype \
   /usr/include/c++/16.1.1/cerrno \
   /usr/include/c++/16.1.1/charconv \
+  /usr/include/c++/16.1.1/chrono \
   /usr/include/c++/16.1.1/clocale \
   /usr/include/c++/16.1.1/cmath \
   /usr/include/c++/16.1.1/codecvt \
   /usr/include/c++/16.1.1/compare \
   /usr/include/c++/16.1.1/concepts \
+  /usr/include/c++/16.1.1/csignal \
   /usr/include/c++/16.1.1/cstddef \
   /usr/include/c++/16.1.1/cstdint \
   /usr/include/c++/16.1.1/cstdio \
@@ -810,6 +884,7 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/c++/16.1.1/cwctype \
   /usr/include/c++/16.1.1/debug/assertions.h \
   /usr/include/c++/16.1.1/debug/debug.h \
+  /usr/include/c++/16.1.1/deque \
   /usr/include/c++/16.1.1/exception \
   /usr/include/c++/16.1.1/ext/aligned_buffer.h \
   /usr/include/c++/16.1.1/ext/alloc_traits.h \
@@ -825,9 +900,12 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/c++/16.1.1/iomanip \
   /usr/include/c++/16.1.1/ios \
   /usr/include/c++/16.1.1/iosfwd \
+  /usr/include/c++/16.1.1/iostream \
   /usr/include/c++/16.1.1/istream \
+  /usr/include/c++/16.1.1/iterator \
   /usr/include/c++/16.1.1/limits \
   /usr/include/c++/16.1.1/locale \
+  /usr/include/c++/16.1.1/map \
   /usr/include/c++/16.1.1/math.h \
   /usr/include/c++/16.1.1/memory \
   /usr/include/c++/16.1.1/new \
@@ -839,14 +917,21 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/c++/16.1.1/pstl/glue_algorithm_defs.h \
   /usr/include/c++/16.1.1/pstl/glue_memory_defs.h \
   /usr/include/c++/16.1.1/pstl/pstl_config.h \
+  /usr/include/c++/16.1.1/ranges \
   /usr/include/c++/16.1.1/ratio \
+  /usr/include/c++/16.1.1/regex \
+  /usr/include/c++/16.1.1/semaphore \
+  /usr/include/c++/16.1.1/set \
   /usr/include/c++/16.1.1/span \
   /usr/include/c++/16.1.1/sstream \
+  /usr/include/c++/16.1.1/stack \
   /usr/include/c++/16.1.1/stdexcept \
+  /usr/include/c++/16.1.1/stop_token \
   /usr/include/c++/16.1.1/streambuf \
   /usr/include/c++/16.1.1/string \
   /usr/include/c++/16.1.1/string_view \
   /usr/include/c++/16.1.1/system_error \
+  /usr/include/c++/16.1.1/thread \
   /usr/include/c++/16.1.1/tr1/bessel_function.tcc \
   /usr/include/c++/16.1.1/tr1/beta_function.tcc \
   /usr/include/c++/16.1.1/tr1/ell_integral.tcc \
@@ -863,6 +948,7 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/c++/16.1.1/type_traits \
   /usr/include/c++/16.1.1/typeinfo \
   /usr/include/c++/16.1.1/unordered_map \
+  /usr/include/c++/16.1.1/utility \
   /usr/include/c++/16.1.1/variant \
   /usr/include/c++/16.1.1/vector \
   /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/atomic_word.h \
@@ -883,20 +969,27 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/ctype.h \
   /usr/include/endian.h \
   /usr/include/errno.h \
+  /usr/include/fcntl.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
   /usr/include/gnu/stubs-64.h \
   /usr/include/gnu/stubs.h \
   /usr/include/libintl.h \
+  /usr/include/linux/close_range.h \
   /usr/include/linux/errno.h \
+  /usr/include/linux/falloc.h \
+  /usr/include/linux/openat2.h \
   /usr/include/linux/posix_types.h \
   /usr/include/linux/sched/types.h \
+  /usr/include/linux/stat.h \
   /usr/include/linux/stddef.h \
   /usr/include/linux/types.h \
   /usr/include/locale.h \
   /usr/include/math.h \
   /usr/include/pthread.h \
+  /usr/include/pwd.h \
   /usr/include/sched.h \
+  /usr/include/signal.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -906,8 +999,13 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o: /home/illia/proj/games/brredit/src/G
   /usr/include/sys/cdefs.h \
   /usr/include/sys/select.h \
   /usr/include/sys/single_threaded.h \
+  /usr/include/sys/stat.h \
+  /usr/include/sys/time.h \
   /usr/include/sys/types.h \
+  /usr/include/sys/ucontext.h \
+  /usr/include/sys/wait.h \
   /usr/include/time.h \
+  /usr/include/unistd.h \
   /usr/include/wchar.h \
   /usr/include/wctype.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/stdarg.h \
@@ -1271,8 +1369,6 @@ CMakeFiles/brredit.dir/src/main.cc.o:
 
 /usr/lib/libm.so.6:
 
-/usr/lib/libSM.so:
-
 /usr/lib/libOpenGL.so:
 
 /usr/lib/libICE.so:
@@ -1289,23 +1385,79 @@ CMakeFiles/brredit.dir/src/main.cc.o:
 
 /usr/lib/libatomic.so:
 
-/usr/lib/crtn.o:
-
 /usr/lib/Scrt1.o:
 
 /home/illia/proj/games/brredit/src/main.cc:
+
+/usr/include/sys/time.h:
+
+/usr/include/sys/stat.h:
+
+/usr/include/linux/stat.h:
+
+/usr/include/sys/wait.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/c++/16.1.1/thread:
+
+/usr/include/c++/16.1.1/stack:
+
+/usr/include/c++/16.1.1/regex:
 
 /usr/include/c++/16.1.1/ratio:
 
 /usr/include/c++/16.1.1/print:
 
+/usr/include/c++/16.1.1/map:
+
+/usr/include/c++/16.1.1/iterator:
+
+/usr/include/c++/16.1.1/deque:
+
 /usr/include/c++/16.1.1/codecvt:
 
+/usr/include/c++/16.1.1/chrono:
+
+/usr/include/c++/16.1.1/bitset:
+
+/usr/include/c++/16.1.1/bits/stream_iterator.h:
+
+/usr/lib/crtn.o:
+
+/usr/include/c++/16.1.1/bits/stl_tree.h:
+
+/usr/include/c++/16.1.1/bits/stl_stack.h:
+
+/usr/include/c++/16.1.1/bits/stl_relops.h:
+
+/usr/include/c++/16.1.1/bits/stl_multiset.h:
+
+/usr/include/c++/16.1.1/bits/std_thread.h:
+
+/usr/include/c++/16.1.1/bits/std_function.h:
+
 /usr/include/c++/16.1.1/bits/sstream.tcc:
+
+/usr/include/c++/16.1.1/bits/semaphore_base.h:
+
+/usr/include/c++/16.1.1/bits/regex_executor.tcc:
+
+/usr/include/c++/16.1.1/bits/regex_executor.h:
+
+/usr/include/c++/16.1.1/bits/regex_error.h:
+
+/usr/include/c++/16.1.1/bits/regex_constants.h:
+
+/usr/include/c++/16.1.1/bits/regex_compiler.tcc:
+
+/usr/include/c++/16.1.1/bits/regex_automaton.tcc:
 
 /usr/include/c++/16.1.1/bits/quoted_string.h:
 
 /usr/include/c++/16.1.1/bits/print.h:
+
+/usr/include/c++/16.1.1/bits/intcmp.h:
 
 /usr/include/c++/16.1.1/bits/fs_path.h:
 
@@ -1313,9 +1465,67 @@ CMakeFiles/brredit.dir/src/main.cc.o:
 
 /usr/include/c++/16.1.1/bits/fs_dir.h:
 
+/usr/lib/libSM.so:
+
+/usr/include/c++/16.1.1/bits/elements_of.h:
+
+/usr/include/c++/16.1.1/bits/chrono_io.h:
+
 /usr/lib/libX11.so:
 
 /usr/include/c++/16.1.1/bits/chrono.h:
+
+/usr/include/c++/16.1.1/atomic:
+
+/usr/include/linux/falloc.h:
+
+/usr/include/bits/unistd_ext.h:
+
+/usr/include/bits/types/struct_statx_timestamp.h:
+
+/usr/include/bits/types/struct_statx.h:
+
+/usr/include/bits/types/struct_sigstack.h:
+
+/usr/include/bits/types/siginfo_t.h:
+
+/usr/include/bits/types/sigevent_t.h:
+
+/usr/include/bits/types/idtype_t.h:
+
+/usr/include/bits/statx.h:
+
+/usr/include/bits/stat.h:
+
+/usr/include/bits/ss_flags.h:
+
+/usr/include/bits/signum-arch.h:
+
+/usr/include/bits/siginfo-consts.h:
+
+/usr/include/c++/16.1.1/bits/regex.tcc:
+
+/usr/include/bits/siginfo-consts-arch.h:
+
+/usr/include/bits/sigevent-consts.h:
+
+/usr/include/bits/sigaction.h:
+
+/usr/include/bits/posix_opt.h:
+
+/usr/include/bits/getopt_core.h:
+
+/usr/include/bits/fcntl-linux.h:
+
+/usr/include/bits/confname.h:
+
+/usr/include/c++/16.1.1/stop_token:
+
+/usr/include/bits/cloexec.h:
+
+/home/illia/proj/games/brredit/lib/pfd.h:
+
+/usr/include/bits/types/struct_iovec.h:
 
 /home/illia/proj/games/brredit/src/GameObject.cc:
 
@@ -1341,6 +1551,8 @@ libimgui.a:
 
 /usr/lib/libstdc++.so:
 
+/usr/include/c++/16.1.1/utility:
+
 /usr/include/locale.h:
 
 /usr/include/linux/types.h:
@@ -1350,6 +1562,8 @@ libimgui.a:
 /usr/include/linux/sched/types.h:
 
 /usr/include/gnu/stubs.h:
+
+/usr/include/bits/types/__sigval_t.h:
 
 /usr/include/gnu/stubs-64.h:
 
@@ -1377,7 +1591,11 @@ libimgui.a:
 
 /usr/include/c++/16.1.1/variant:
 
+/usr/include/c++/16.1.1/bits/binders.h:
+
 /usr/include/c++/16.1.1/tr1/special_function_util.h:
+
+/usr/include/bits/sigstack.h:
 
 /usr/include/c++/16.1.1/typeinfo:
 
@@ -1392,6 +1610,8 @@ libimgui.a:
 /usr/include/c++/16.1.1/tr1/ell_integral.tcc:
 
 /usr/include/c++/16.1.1/tr1/beta_function.tcc:
+
+/usr/include/bits/signum-generic.h:
 
 /usr/include/c++/16.1.1/tr1/riemann_zeta.tcc:
 
@@ -1421,9 +1641,13 @@ libimgui.a:
 
 /usr/include/c++/16.1.1/bits/codecvt.h:
 
+/usr/include/c++/16.1.1/ranges:
+
 /usr/include/bits/timesize.h:
 
 /usr/include/bits/types/wint_t.h:
+
+/usr/include/c++/16.1.1/bits/regex_scanner.tcc:
 
 /usr/include/bits/types/struct_timespec.h:
 
@@ -1453,11 +1677,17 @@ libimgui.a:
 
 /usr/include/c++/16.1.1/bits/unicode-data.h:
 
+/usr/include/bits/signal_ext.h:
+
 /usr/include/bits/types/mbstate_t.h:
+
+/usr/include/bits/types/stack_t.h:
 
 /usr/include/c++/16.1.1/ext/concurrence.h:
 
 /usr/include/bits/types/clock_t.h:
+
+/usr/include/bits/types/sig_atomic_t.h:
 
 /usr/include/bits/types/__fpos_t.h:
 
@@ -1468,6 +1698,8 @@ libimgui.a:
 /usr/include/c++/16.1.1/bits/erase_if.h:
 
 /usr/include/c++/16.1.1/backward/auto_ptr.h:
+
+/usr/include/c++/16.1.1/bits/atomic_timed_wait.h:
 
 /usr/include/bits/stdio_lim.h:
 
@@ -1480,6 +1712,8 @@ libimgui.a:
 /usr/include/bits/stdint-intn.h:
 
 /usr/include/bits/types/__fpos64_t.h:
+
+/usr/include/bits/sigthread.h:
 
 /usr/include/c++/16.1.1/tr1/hypergeometric.tcc:
 
@@ -1561,6 +1795,8 @@ libimgui.a:
 
 /usr/include/bits/fp-logb.h:
 
+/usr/include/bits/sigstksz.h:
+
 /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/c++config.h:
 
 /home/illia/proj/games/brredit/src/Globals.hh:
@@ -1569,11 +1805,19 @@ libimgui.a:
 
 /home/illia/proj/games/brredit/lib/raylib/src/raylib.h:
 
+/usr/include/bits/environments.h:
+
 /usr/include/bits/types/struct_FILE.h:
+
+/usr/include/c++/16.1.1/set:
 
 /usr/include/c++/16.1.1/tr1/legendre_function.tcc:
 
 /usr/include/alloca.h:
+
+/usr/include/c++/16.1.1/bits/stl_set.h:
+
+/usr/include/c++/16.1.1/bits/regex.h:
 
 /usr/include/bits/stdint-least.h:
 
@@ -1625,7 +1869,11 @@ CMakeFiles/brredit.dir/src/File.cc.o:
 
 /usr/include/bits/libm-simd-decl-stubs.h:
 
+/usr/include/linux/openat2.h:
+
 /usr/include/c++/16.1.1/bits/version.h:
+
+/usr/include/c++/16.1.1/csignal:
 
 /usr/include/bits/floatn-common.h:
 
@@ -1661,11 +1909,15 @@ CMakeFiles/brredit.dir/src/File.cc.o:
 
 /usr/include/bits/long-double.h:
 
+/usr/include/bits/siginfo-arch.h:
+
 /usr/include/c++/16.1.1/ext/numeric_traits.h:
 
 /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h:
 
 /usr/include/bits/iscanonical.h:
+
+/usr/include/linux/close_range.h:
 
 /usr/include/c++/16.1.1/cerrno:
 
@@ -1695,6 +1947,8 @@ CMakeFiles/brredit.dir/src/File.cc.o:
 
 /usr/include/c++/16.1.1/compare:
 
+/usr/include/c++/16.1.1/semaphore:
+
 /usr/include/c++/16.1.1/bits/shared_ptr.h:
 
 /usr/include/bits/types/timer_t.h:
@@ -1711,7 +1965,11 @@ CMakeFiles/brredit.dir/src/File.cc.o:
 
 /usr/include/c++/16.1.1/bits/uses_allocator_args.h:
 
+/usr/include/c++/16.1.1/bits/stl_multimap.h:
+
 /usr/include/c++/16.1.1/string:
+
+/usr/include/signal.h:
 
 /usr/include/strings.h:
 
@@ -1799,6 +2057,8 @@ CMakeFiles/brredit.dir/src/File.cc.o:
 
 /usr/include/c++/16.1.1/bits/hash_bytes.h:
 
+/usr/include/c++/16.1.1/bits/regex_compiler.h:
+
 /usr/include/bits/types/__mbstate_t.h:
 
 /home/illia/proj/games/brredit/lib/rlImGui/rlImGui.h:
@@ -1812,6 +2072,8 @@ CMakeFiles/brredit.dir/src/File.cc.o:
 /usr/include/c++/16.1.1/bits/iterator_concepts.h:
 
 /usr/lib/libXdmcp.so.6:
+
+/usr/include/pwd.h:
 
 /usr/include/c++/16.1.1/bits/locale_conv.h:
 
@@ -1829,9 +2091,13 @@ CMakeFiles/brredit.dir/src/File.cc.o:
 
 /usr/include/c++/16.1.1/bits/max_size_type.h:
 
+/usr/include/c++/16.1.1/bits/deque.tcc:
+
 /usr/include/c++/16.1.1/bits/shared_ptr_atomic.h:
 
 /usr/include/c++/16.1.1/bits/out_ptr.h:
+
+/usr/include/unistd.h:
 
 /usr/include/c++/16.1.1/bits/monostate.h:
 
@@ -1855,6 +2121,8 @@ CMakeFiles/brredit.dir/src/File.cc.o:
 
 /usr/include/c++/16.1.1/bits/node_handle.h:
 
+/usr/include/bits/struct_stat.h:
+
 /usr/include/c++/16.1.1/bits/ostream_insert.h:
 
 /usr/include/c++/16.1.1/bits/parse_numbers.h:
@@ -1862,6 +2130,8 @@ CMakeFiles/brredit.dir/src/File.cc.o:
 /usr/include/c++/16.1.1/bits/predefined_ops.h:
 
 /usr/include/c++/16.1.1/sstream:
+
+/usr/include/bits/fcntl.h:
 
 /usr/include/c++/16.1.1/bits/memoryfwd.h:
 
@@ -1877,11 +2147,17 @@ CMakeFiles/brredit.dir/src/File.cc.o:
 
 /usr/include/c++/16.1.1/bits/ranges_base.h:
 
+/usr/include/c++/16.1.1/bits/regex_automaton.h:
+
 /usr/include/c++/16.1.1/bits/stdexcept_except.h:
 
 /usr/include/c++/16.1.1/bits/stdexcept_throwfwd.h:
 
+/usr/include/c++/16.1.1/bits/stl_deque.h:
+
 /usr/include/c++/16.1.1/bits/string_view.tcc:
+
+/usr/include/c++/16.1.1/iostream:
 
 /usr/include/math.h:
 
@@ -1921,6 +2197,10 @@ CMakeFiles/brredit.dir/src/File.cc.o:
 
 /usr/include/c++/16.1.1/bits/stl_tempbuf.h:
 
+/usr/include/c++/16.1.1/bits/regex_scanner.h:
+
+/usr/include/bits/openat2.h:
+
 /usr/include/c++/16.1.1/bits/stl_uninitialized.h:
 
 CMakeFiles/brredit.dir/src/Editor.cc.o:
@@ -1930,6 +2210,8 @@ CMakeFiles/brredit.dir/src/Editor.cc.o:
 /usr/include/c++/16.1.1/bits/streambuf.tcc:
 
 /usr/include/c++/16.1.1/cstddef:
+
+/usr/include/sys/ucontext.h:
 
 /usr/include/stdc-predef.h:
 
@@ -1973,6 +2255,8 @@ librlImGui.a:
 
 /usr/include/c++/16.1.1/exception:
 
+/usr/include/bits/types/sigval_t.h:
+
 /usr/include/c++/16.1.1/stdexcept:
 
 /usr/include/c++/16.1.1/cwctype:
@@ -1999,6 +2283,8 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o:
 
 /usr/include/c++/16.1.1/ios:
 
+/usr/include/c++/16.1.1/bits/stl_map.h:
+
 /usr/include/c++/16.1.1/span:
 
 /usr/include/c++/16.1.1/bits/streambuf_iterator.h:
@@ -2006,6 +2292,8 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o:
 /usr/include/c++/16.1.1/limits:
 
 /usr/lib/libGLdispatch.so.0:
+
+/usr/include/bits/sigcontext.h:
 
 /usr/include/c++/16.1.1/locale:
 
@@ -2015,13 +2303,19 @@ CMakeFiles/brredit.dir/src/GameObject.cc.o:
 
 /usr/include/c++/16.1.1/math.h:
 
+/usr/include/bits/statx-generic.h:
+
 /usr/include/c++/16.1.1/bits/ios_base.h:
 
 /usr/include/c++/16.1.1/numbers:
 
+/usr/include/bits/getopt_posix.h:
+
 /usr/include/errno.h:
 
 /usr/include/c++/16.1.1/pstl/glue_algorithm_defs.h:
+
+/usr/include/c++/16.1.1/bits/this_thread_sleep.h:
 
 /usr/include/c++/16.1.1/streambuf:
 
