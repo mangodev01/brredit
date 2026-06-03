@@ -247,9 +247,9 @@ CMakeFiles/brredit.dir/src/Editor.cc.o: \
  /usr/include/c++/16.1.1/bits/hashtable.h \
  /usr/include/c++/16.1.1/bits/hashtable_policy.h \
  /usr/include/c++/16.1.1/bits/node_handle.h \
+ /home/illia/proj/games/brredit/lib/rlImGui/extras/IconsFontAwesome6.h \
  /usr/include/c++/16.1.1/algorithm \
  /usr/include/c++/16.1.1/bits/ranges_algo.h \
  /usr/include/c++/16.1.1/pstl/glue_algorithm_defs.h \
  /usr/include/c++/16.1.1/cfloat \
- /home/illia/proj/games/brredit/lib/rlImGui/rlImGui.h \
- /home/illia/proj/games/brredit/lib/rlImGui/extras/IconsFontAwesome6.h
+ /home/illia/proj/games/brredit/lib/rlImGui/rlImGui.h

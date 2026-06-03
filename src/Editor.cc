@@ -2,6 +2,7 @@
 
 #include "GameObject.hh"
 #include "Globals.hh"
+#include "extras/IconsFontAwesome6.h"
 #include <format>
 #include <raymath.h>
 
@@ -42,15 +43,14 @@ namespace BrrEdit {
 		static const ImWchar iconRanges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
 
 		ImFontConfig cfg;
-		cfg.MergeMode = true;
 		cfg.PixelSnapH = true;
 
 		io.Fonts->AddFontFromFileTTF(
-				"Roboto/fa.ttf",
-				16.0f,
-				&cfg,
-				iconRanges
-				);
+			"Roboto/fa.ttf",
+			16.0f,
+			&cfg,
+			iconRanges
+		);
 
 		io.FontDefault = roboto;
 
@@ -149,9 +149,11 @@ namespace BrrEdit {
 	void Editor::Hierarchy() {
 		ImGui::Begin("Hierarchy");
 
-		if (ImGui::Button("+", {30,30})) {
+		ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[1]);
+		if (ImGui::Button(ICON_FA_PLUS, {30,30})) {
 			ImGui::OpenPopup("add");
 		}
+		ImGui::PopFont();
 
 		if (ImGui::BeginPopup("add")) {
 			if (ImGui::MenuItem("Object")) {
@@ -195,10 +197,12 @@ namespace BrrEdit {
 			ImGui::PushStyleColor(ImGuiCol_ButtonActive, {.6, 0, 0, 1});
 			ImGui::PushStyleColor(ImGuiCol_Button, {1, 0, 0, 1});
 
+			ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[1]);
 			if (ImGui::SmallButton(nuke.c_str()))
 			{
 				m_Room.Nuke(gameObj.Id);
 			}
+			ImGui::PopFont();
 
 			ImGui::PopStyleColor(3);
 		}
