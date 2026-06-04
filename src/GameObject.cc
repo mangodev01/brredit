@@ -2,6 +2,7 @@
 
 #include "File.hh"
 #include "Globals.hh"
+#include "raylib.h"
 #include "raymath.h"
 
 #include <algorithm>
@@ -27,35 +28,45 @@ namespace BrrEdit {
 		}
 	}
 
+	void Room::RenderUI() {
+		for (GameObject& obj : m_Objs) {
+			if (Text* text = std::get_if<Text>(&obj.Obj)) {
+				auto color = Color{text->Col.X, text->Col.Y, text->Col.Z, 255};
+				Vector2 pos = {text->Pos.X, text->Pos.Y};
+				DrawTextEx(
+					g_TextFont, text->Txt, pos, text->FontSize, 1, color);
+			}
+		}
+	}
+
 	void Room::Render() {
 		for (GameObject& obj : m_Objs) {
 			auto pos = std::bit_cast<Vector3>(obj.ObjTransform.Pos);
 			auto scale = std::bit_cast<Vector3>(obj.ObjTransform.Scale);
 			auto rot = std::bit_cast<Vector3>(obj.ObjTransform.Rot);
 
-
-			Matrix transform =
-				MatrixScale(scale.x, scale.y, scale.z) *
-				MatrixTranslate(pos.x, pos.y, pos.z) *
-				MatrixRotateXYZ(rot);
+			Matrix transform = MatrixScale(scale.x, scale.y, scale.z) *
+							   MatrixTranslate(pos.x, pos.y, pos.z) *
+							   MatrixRotateXYZ(rot);
 
 			rlPushMatrix();
 			rlMultMatrixf(MatrixToFloat(transform));
 
 			if (Object* object = std::get_if<Object>(&obj.Obj)) {
-				auto color = Color { object->Col.X, object->Col.Y, object->Col.Z, 255 };
+				auto color =
+					Color{object->Col.X, object->Col.Y, object->Col.Z, 255};
 
 				if (g_Wireframe) {
-					DrawCubeWiresV({0,0,0}, {1,1,1}, color);
+					DrawCubeWiresV({0, 0, 0}, {1, 1, 1}, color);
 				} else {
-					DrawCubeV({0,0,0}, {1,1,1}, color);
+					DrawCubeV({0, 0, 0}, {1, 1, 1}, color);
 				}
 
 				if (obj.Id == m_Selected) {
-					DrawCubeWiresV({0,0,0}, {1.02,1.02,1.02}, SKYBLUE);
+					DrawCubeWiresV({0, 0, 0}, {1.02, 1.02, 1.02}, SKYBLUE);
 				}
 			} else if (Mesh* mesh = std::get_if<Mesh>(&obj.Obj)) {
-				auto color = Color { mesh->Col.X, mesh->Col.Y, mesh->Col.Z, 255 };
+				auto color = Color{mesh->Col.X, mesh->Col.Y, mesh->Col.Z, 255};
 				auto path_str = std::format("./{}.glb", mesh->MeshId);
 				auto path = const_cast<char*>(path_str.c_str());
 
@@ -73,12 +84,12 @@ namespace BrrEdit {
 				model.transform = transform;
 
 				if (g_Wireframe) {
-					DrawModelWires(model, {0,0,0}, 1.0f, color);
+					DrawModelWires(model, {0, 0, 0}, 1.0f, color);
 				} else {
-					DrawModel(model, {0,0,0}, 1.0f, color);
+					DrawModel(model, {0, 0, 0}, 1.0f, color);
 				}
 			} else if (Sound* sound = std::get_if<Sound>(&obj.Obj)) {
-				DrawCubeV({0,0,0}, {1,1,1}, { 255, 0, 0, 64 });
+				DrawCubeV({0, 0, 0}, {1, 1, 1}, {255, 0, 0, 64});
 			}
 
 			rlPopMatrix();
@@ -97,11 +108,12 @@ namespace BrrEdit {
 
 				std::unique_ptr<Music>& music = g_Sounds[path];
 
-				bool shouldPlay = PointInOBB(std::bit_cast<Vec3f>(cam.position), obj.ObjTransform);
+				bool shouldPlay = PointInOBB(
+					std::bit_cast<Vec3f>(cam.position), obj.ObjTransform);
 
 				if (!music) {
-					music = std::make_unique<Music>(LoadMusicStream(path_str.c_str()));
-
+					music = std::make_unique<Music>(
+						LoadMusicStream(path_str.c_str()));
 				}
 
 				if (shouldPlay) {
@@ -123,12 +135,8 @@ namespace BrrEdit {
 		char name[64];
 		strcpy(name, "Mesh ");
 		strcat(name, std::to_string(m_Objs.size()).c_str());
-		m_Objs.emplace_back(
-			m_Objs.size(),
-			name,
-			Transform::Default(),
-			std::variant<Mesh, Sound, Object>{ Mesh(Vec3b::Max(), "model") }
-		);
+		m_Objs.emplace_back(m_Objs.size(), name, Transform::Default(),
+			ObjVariant{Mesh(Vec3b::Max(), "model")});
 	}
 
 	void Room::AddObject() {
@@ -136,12 +144,8 @@ namespace BrrEdit {
 		char name[64];
 		strcpy(name, "Object ");
 		strcat(name, std::to_string(m_Objs.size()).c_str());
-		m_Objs.emplace_back(
-			m_Objs.size(),
-			name,
-			Transform::Default(),
-			std::variant<Mesh, Sound, Object>{ Object { .Col = Vec3b::Max() } }
-		);
+		m_Objs.emplace_back(m_Objs.size(), name, Transform::Default(),
+			ObjVariant{Object{.Col = Vec3b::Max()}});
 	}
 
 	void Room::AddSound() {
@@ -149,22 +153,22 @@ namespace BrrEdit {
 		char name[64];
 		strcpy(name, "Sound ");
 		strcat(name, std::to_string(m_Objs.size()).c_str());
-		m_Objs.emplace_back(
-			m_Objs.size(),
-			name,
-			Transform::Default(),
-			std::variant<Mesh, Sound, Object>{ Sound("sound") }
-		);
+		m_Objs.emplace_back(m_Objs.size(), name, Transform::Default(),
+			ObjVariant{Sound("sound")});
+	}
+
+	void Room::AddUI() {
+		m_Selected = m_Objs.size();
+		char name[64];
+		strcpy(name, "UI ");
+		strcat(name, std::to_string(m_Objs.size()).c_str());
+		m_Objs.emplace_back(m_Objs.size(), name, Transform::Default(),
+			ObjVariant{Text("hello world", {255, 0, 0}, 14)});
 	}
 
 	GameObject* Room::GetSelected() {
-		auto it = std::ranges::find_if(
-				m_Objs.begin(),
-				m_Objs.end(),
-				[this](const GameObject& obj) {
-				return obj.Id == m_Selected;
-				}
-				);
+		auto it = std::ranges::find_if(m_Objs.begin(), m_Objs.end(),
+			[this](const GameObject& obj) { return obj.Id == m_Selected; });
 
 		if (it != m_Objs.end()) {
 			return it.base();
@@ -179,19 +183,15 @@ namespace BrrEdit {
 
 	void Room::Nuke(uint32_t id) {
 		std::erase_if(
-				m_Objs,
-				[=](const GameObject& obj) {
-				return obj.Id == id;
-				}
-				);
+			m_Objs, [=](const GameObject& obj) { return obj.Id == id; });
 	}
 
 	void Room::Save() {
 		std::string path;
 		if (pfd::settings::available()) {
-			pfd::save_file saveFileDiag = pfd::save_file("save location", pfd::path::home(),
-				{ "Backrooms Room (.brr)", "*.brr",
-				  "All Files", "*" });
+			pfd::save_file saveFileDiag =
+				pfd::save_file("save location", pfd::path::home(),
+					{"Backrooms Room (.brr)", "*.brr", "All Files", "*"});
 
 			path = saveFileDiag.result();
 		} else {
@@ -202,7 +202,7 @@ namespace BrrEdit {
 
 		writer.Str("brr");
 
-		writer.U8(0);
+		writer.U8(1);
 		writer.U32(m_Objs.size());
 
 		for (GameObject obj : m_Objs) {
@@ -214,23 +214,33 @@ namespace BrrEdit {
 
 			writer.U64(obj.Obj.index());
 
-			std::visit([&](auto& val) {
+			std::visit(
+				[&](auto& val) {
 					using T = std::decay_t<decltype(val)>;
 
 					if constexpr (std::same_as<T, Object>) {
-					writer.U8(val.Col.X);
-					writer.U8(val.Col.Y);
-					writer.U8(val.Col.Z);
+						writer.U8(val.Col.X);
+						writer.U8(val.Col.Y);
+						writer.U8(val.Col.Z);
 					} else if constexpr (std::same_as<T, Mesh>) {
-					writer.U8(val.Col.X);
-					writer.U8(val.Col.Y);
-					writer.U8(val.Col.Z);
+						writer.U8(val.Col.X);
+						writer.U8(val.Col.Y);
+						writer.U8(val.Col.Z);
 
-					writer.Str(val.MeshId);
+						writer.Str(val.MeshId);
 					} else if constexpr (std::same_as<T, Sound>) {
-					writer.Str(val.SoundId);
+						writer.Str(val.SoundId);
+					} else if constexpr (std::same_as<T, Text>) {
+						writer.U8(val.Col.X);
+						writer.U8(val.Col.Y);
+						writer.U8(val.Col.Z);
+						writer.Str(val.Txt);
+						writer.F32(val.FontSize);
+						writer.F32(val.Pos.X);
+						writer.F32(val.Pos.Y);
 					}
-					}, obj.Obj);
+				},
+				obj.Obj);
 
 			writer.U8(0);
 		}
@@ -242,23 +252,24 @@ namespace BrrEdit {
 		std::string path;
 
 		if (pfd::settings::available()) {
-			pfd::open_file openFileDiag = pfd::open_file("save location", pfd::path::home(),
-				{ "Backrooms Room (.brr)", "*.brr",
-				  "All Files", "*" });
+			pfd::open_file openFileDiag =
+				pfd::open_file("save location", pfd::path::home(),
+					{"Backrooms Room (.brr)", "*.brr", "All Files", "*"});
 
 			path = openFileDiag.result().at(0);
 		} else {
 			path = "latest.brr";
 		}
 
-		FileReader reader("latest.brr");
+		FileReader reader(path);
 
 		if (reader.Str() != "brr") {
 			std::println("latest.brr is not a valid .brr");
 			return;
 		}
 
-		if (reader.U8() != 0) {
+		uint8_t ver = reader.U8();
+		if (ver != 0 && ver != 1) {
 			std::println("currently not supported .brr version");
 			return;
 		}
@@ -284,7 +295,7 @@ namespace BrrEdit {
 
 				std::string meshId = reader.Str();
 
-				Mesh mesh({ .X = r, .Y = g, .Z = b }, meshId.c_str());
+				Mesh mesh({.X = r, .Y = g, .Z = b}, meshId.c_str());
 
 				GameObject gameObj(id, name.c_str(), transform, mesh);
 
@@ -302,9 +313,29 @@ namespace BrrEdit {
 				uint8_t y = reader.U8();
 				uint8_t z = reader.U8();
 
-				Object obj{ .Col = { .X = x, .Y = y, .Z = z }};
+				Object obj{.Col = {.X = x, .Y = y, .Z = z}};
 
 				GameObject gameObj(id, name.c_str(), transform, obj);
+
+				objs.emplace_back(gameObj);
+			} else if (index == 3) {
+				uint8_t r = reader.U8();
+				uint8_t g = reader.U8();
+				uint8_t b = reader.U8();
+
+				std::string txt = reader.Str();
+
+				float fontSize = 14.0f;
+				Vec2f textPos = Vec2f::Zero();
+				if (ver >= 1) {
+					fontSize = reader.F32();
+					textPos.X = reader.F32();
+					textPos.Y = reader.F32();
+				}
+
+				Text text(txt.c_str(), {r, g, b}, fontSize, textPos);
+
+				GameObject gameObj(id, name.c_str(), transform, text);
 
 				objs.emplace_back(gameObj);
 			}
@@ -320,4 +351,4 @@ namespace BrrEdit {
 	const std::vector<GameObject>& Room::Objects() {
 		return m_Objs;
 	}
-}
+}  // namespace BrrEdit

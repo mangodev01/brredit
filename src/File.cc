@@ -53,7 +53,8 @@ namespace BrrEdit {
 
 	void FileWriter::Flush() {
 		std::ofstream file(m_path, std::ios::binary);
-		file.write(reinterpret_cast<const char*>(m_buffer.data()), m_buffer.size());
+		file.write(
+			reinterpret_cast<const char*>(m_buffer.data()), m_buffer.size());
 		file.close();
 	}
 
@@ -119,4 +120,4 @@ namespace BrrEdit {
 	void FileReader::Bytes(uint8_t* out, size_t size) {
 		m_file.read(reinterpret_cast<char*>(out), size);
 	}
-}
+}  // namespace BrrEdit

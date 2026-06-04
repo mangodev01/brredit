@@ -26,6 +26,13 @@ namespace BrrEdit {
 		}
 	};
 
+	struct Vec2f {
+		float X;
+		float Y;
+
+		static Vec2f Zero() { return { 0, 0 }; }
+	};
+
 	struct Vec3f {
 		float X;
 		float Y;
@@ -109,6 +116,19 @@ namespace BrrEdit {
 		Vec3b Col;
 	};
 
+	struct Text {
+		char Txt[128];
+		Vec3b Col;
+		float FontSize;
+		Vec2f Pos;
+
+		Text(const char* text, Vec3b col, float fontSize = 14.0f, Vec2f pos = Vec2f::Zero())
+			: Col(col), FontSize(fontSize), Pos(pos) {
+			std::strncpy(Txt, text, sizeof(Txt) - 1);
+			Txt[sizeof(Txt) - 1] = '\0';
+		}
+	};
+
 	struct Transform {
 		Vec3f Pos;
 
@@ -162,13 +182,15 @@ namespace BrrEdit {
 	}
 
 
+	using ObjVariant = std::variant<Mesh, Sound, Object, Text>;
+
 	struct GameObject {
 		uint32_t Id;
 		char Name[128];
 		Transform ObjTransform;
-		std::variant<Mesh, Sound, Object> Obj;
+		ObjVariant Obj;
 
-		GameObject(uint32_t id, const char* name, Transform t, std::variant<Mesh, Sound, Object> obj)
+		GameObject(uint32_t id, const char* name, Transform t, ObjVariant obj)
 			: Id(id), ObjTransform(t), Obj(std::move(obj))
 		{
 			std::strncpy(Name, name, sizeof(Name) - 1);
@@ -184,10 +206,12 @@ namespace BrrEdit {
 			void Update(Camera3D cam);
 
 			void Render();
+			void RenderUI();
 
 			void AddObject();
 			void AddMesh();
 			void AddSound();
+			void AddUI();
 
 			void Save();
 			void Load();
@@ -202,6 +226,6 @@ namespace BrrEdit {
 
 		private:
 			std::vector<GameObject> m_Objs;
-			uint32_t m_Selected;
+			uint32_t m_Selected = UINT32_MAX;
 	};
 }
