@@ -120,4 +120,4 @@ namespace BrrEdit {
 	void FileReader::Bytes(uint8_t* out, size_t size) {
 		m_file.read(reinterpret_cast<char*>(out), size);
 	}
-}  // namespace BrrEdit
+}

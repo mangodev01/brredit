@@ -844,6 +844,9 @@ X11_xkbfile_INCLUDE_PATH:PATH=/usr/include
 //Path to a library.
 X11_xkbfile_LIB:FILEPATH=/usr/lib/libxkbfile.so
 
+//Dependencies for the target
+brr_core_LIB_DEPENDS:STATIC=general;raylib;
+
 //Value Computed by CMake
 brredit_BINARY_DIR:STATIC=/home/illia/proj/games/brredit/bin
 

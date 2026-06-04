@@ -1,4 +1,6 @@
+/home/illia/proj/games/brredit/bin/CMakeFiles/brr_core.dir
 /home/illia/proj/games/brredit/bin/CMakeFiles/brredit.dir
+/home/illia/proj/games/brredit/bin/CMakeFiles/brr_player.dir
 /home/illia/proj/games/brredit/bin/CMakeFiles/imgui.dir
 /home/illia/proj/games/brredit/bin/CMakeFiles/rlImGui.dir
 /home/illia/proj/games/brredit/bin/CMakeFiles/package.dir

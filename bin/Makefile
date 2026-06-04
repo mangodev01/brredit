@@ -182,6 +182,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named brr_core
+
+# Build rule for target.
+brr_core: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 brr_core
+.PHONY : brr_core
+
+# fast build rule for target.
+brr_core/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_core.dir/build.make CMakeFiles/brr_core.dir/build
+.PHONY : brr_core/fast
+
+#=============================================================================
 # Target rules for targets named brredit
 
 # Build rule for target.
@@ -193,6 +206,19 @@ brredit: cmake_check_build_system
 brredit/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/build
 .PHONY : brredit/fast
+
+#=============================================================================
+# Target rules for targets named brr_player
+
+# Build rule for target.
+brr_player: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 brr_player
+.PHONY : brr_player
+
+# fast build rule for target.
+brr_player/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_player.dir/build.make CMakeFiles/brr_player.dir/build
+.PHONY : brr_player/fast
 
 #=============================================================================
 # Target rules for targets named imgui
@@ -403,101 +429,173 @@ lib/rlImGui/rlImGui.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/rlImGui.dir/build.make CMakeFiles/rlImGui.dir/lib/rlImGui/rlImGui.cpp.s
 .PHONY : lib/rlImGui/rlImGui.cpp.s
 
-src/Editor.o: src/Editor.cc.o
-.PHONY : src/Editor.o
+src/Core/Camera.o: src/Core/Camera.cc.o
+.PHONY : src/Core/Camera.o
 
 # target to build an object file
-src/Editor.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/Editor.cc.o
-.PHONY : src/Editor.cc.o
+src/Core/Camera.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_core.dir/build.make CMakeFiles/brr_core.dir/src/Core/Camera.cc.o
+.PHONY : src/Core/Camera.cc.o
 
-src/Editor.i: src/Editor.cc.i
-.PHONY : src/Editor.i
+src/Core/Camera.i: src/Core/Camera.cc.i
+.PHONY : src/Core/Camera.i
 
 # target to preprocess a source file
-src/Editor.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/Editor.cc.i
-.PHONY : src/Editor.cc.i
+src/Core/Camera.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_core.dir/build.make CMakeFiles/brr_core.dir/src/Core/Camera.cc.i
+.PHONY : src/Core/Camera.cc.i
 
-src/Editor.s: src/Editor.cc.s
-.PHONY : src/Editor.s
+src/Core/Camera.s: src/Core/Camera.cc.s
+.PHONY : src/Core/Camera.s
 
 # target to generate assembly for a file
-src/Editor.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/Editor.cc.s
-.PHONY : src/Editor.cc.s
+src/Core/Camera.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_core.dir/build.make CMakeFiles/brr_core.dir/src/Core/Camera.cc.s
+.PHONY : src/Core/Camera.cc.s
 
-src/File.o: src/File.cc.o
-.PHONY : src/File.o
+src/Core/File.o: src/Core/File.cc.o
+.PHONY : src/Core/File.o
 
 # target to build an object file
-src/File.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/File.cc.o
-.PHONY : src/File.cc.o
+src/Core/File.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_core.dir/build.make CMakeFiles/brr_core.dir/src/Core/File.cc.o
+.PHONY : src/Core/File.cc.o
 
-src/File.i: src/File.cc.i
-.PHONY : src/File.i
+src/Core/File.i: src/Core/File.cc.i
+.PHONY : src/Core/File.i
 
 # target to preprocess a source file
-src/File.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/File.cc.i
-.PHONY : src/File.cc.i
+src/Core/File.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_core.dir/build.make CMakeFiles/brr_core.dir/src/Core/File.cc.i
+.PHONY : src/Core/File.cc.i
 
-src/File.s: src/File.cc.s
-.PHONY : src/File.s
+src/Core/File.s: src/Core/File.cc.s
+.PHONY : src/Core/File.s
 
 # target to generate assembly for a file
-src/File.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/File.cc.s
-.PHONY : src/File.cc.s
+src/Core/File.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_core.dir/build.make CMakeFiles/brr_core.dir/src/Core/File.cc.s
+.PHONY : src/Core/File.cc.s
 
-src/GameObject.o: src/GameObject.cc.o
-.PHONY : src/GameObject.o
+src/Core/GameObject.o: src/Core/GameObject.cc.o
+.PHONY : src/Core/GameObject.o
 
 # target to build an object file
-src/GameObject.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/GameObject.cc.o
-.PHONY : src/GameObject.cc.o
+src/Core/GameObject.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_core.dir/build.make CMakeFiles/brr_core.dir/src/Core/GameObject.cc.o
+.PHONY : src/Core/GameObject.cc.o
 
-src/GameObject.i: src/GameObject.cc.i
-.PHONY : src/GameObject.i
+src/Core/GameObject.i: src/Core/GameObject.cc.i
+.PHONY : src/Core/GameObject.i
 
 # target to preprocess a source file
-src/GameObject.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/GameObject.cc.i
-.PHONY : src/GameObject.cc.i
+src/Core/GameObject.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_core.dir/build.make CMakeFiles/brr_core.dir/src/Core/GameObject.cc.i
+.PHONY : src/Core/GameObject.cc.i
 
-src/GameObject.s: src/GameObject.cc.s
-.PHONY : src/GameObject.s
+src/Core/GameObject.s: src/Core/GameObject.cc.s
+.PHONY : src/Core/GameObject.s
 
 # target to generate assembly for a file
-src/GameObject.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/GameObject.cc.s
-.PHONY : src/GameObject.cc.s
+src/Core/GameObject.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_core.dir/build.make CMakeFiles/brr_core.dir/src/Core/GameObject.cc.s
+.PHONY : src/Core/GameObject.cc.s
 
-src/main.o: src/main.cc.o
-.PHONY : src/main.o
+src/Editor/Editor.o: src/Editor/Editor.cc.o
+.PHONY : src/Editor/Editor.o
 
 # target to build an object file
-src/main.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/main.cc.o
-.PHONY : src/main.cc.o
+src/Editor/Editor.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/Editor/Editor.cc.o
+.PHONY : src/Editor/Editor.cc.o
 
-src/main.i: src/main.cc.i
-.PHONY : src/main.i
+src/Editor/Editor.i: src/Editor/Editor.cc.i
+.PHONY : src/Editor/Editor.i
 
 # target to preprocess a source file
-src/main.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/main.cc.i
-.PHONY : src/main.cc.i
+src/Editor/Editor.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/Editor/Editor.cc.i
+.PHONY : src/Editor/Editor.cc.i
 
-src/main.s: src/main.cc.s
-.PHONY : src/main.s
+src/Editor/Editor.s: src/Editor/Editor.cc.s
+.PHONY : src/Editor/Editor.s
 
 # target to generate assembly for a file
-src/main.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/main.cc.s
-.PHONY : src/main.cc.s
+src/Editor/Editor.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/Editor/Editor.cc.s
+.PHONY : src/Editor/Editor.cc.s
+
+src/Editor/main.o: src/Editor/main.cc.o
+.PHONY : src/Editor/main.o
+
+# target to build an object file
+src/Editor/main.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/Editor/main.cc.o
+.PHONY : src/Editor/main.cc.o
+
+src/Editor/main.i: src/Editor/main.cc.i
+.PHONY : src/Editor/main.i
+
+# target to preprocess a source file
+src/Editor/main.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/Editor/main.cc.i
+.PHONY : src/Editor/main.cc.i
+
+src/Editor/main.s: src/Editor/main.cc.s
+.PHONY : src/Editor/main.s
+
+# target to generate assembly for a file
+src/Editor/main.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brredit.dir/build.make CMakeFiles/brredit.dir/src/Editor/main.cc.s
+.PHONY : src/Editor/main.cc.s
+
+src/Player/Player.o: src/Player/Player.cc.o
+.PHONY : src/Player/Player.o
+
+# target to build an object file
+src/Player/Player.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_player.dir/build.make CMakeFiles/brr_player.dir/src/Player/Player.cc.o
+.PHONY : src/Player/Player.cc.o
+
+src/Player/Player.i: src/Player/Player.cc.i
+.PHONY : src/Player/Player.i
+
+# target to preprocess a source file
+src/Player/Player.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_player.dir/build.make CMakeFiles/brr_player.dir/src/Player/Player.cc.i
+.PHONY : src/Player/Player.cc.i
+
+src/Player/Player.s: src/Player/Player.cc.s
+.PHONY : src/Player/Player.s
+
+# target to generate assembly for a file
+src/Player/Player.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_player.dir/build.make CMakeFiles/brr_player.dir/src/Player/Player.cc.s
+.PHONY : src/Player/Player.cc.s
+
+src/Player/main.o: src/Player/main.cc.o
+.PHONY : src/Player/main.o
+
+# target to build an object file
+src/Player/main.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_player.dir/build.make CMakeFiles/brr_player.dir/src/Player/main.cc.o
+.PHONY : src/Player/main.cc.o
+
+src/Player/main.i: src/Player/main.cc.i
+.PHONY : src/Player/main.i
+
+# target to preprocess a source file
+src/Player/main.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_player.dir/build.make CMakeFiles/brr_player.dir/src/Player/main.cc.i
+.PHONY : src/Player/main.cc.i
+
+src/Player/main.s: src/Player/main.cc.s
+.PHONY : src/Player/main.s
+
+# target to generate assembly for a file
+src/Player/main.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/brr_player.dir/build.make CMakeFiles/brr_player.dir/src/Player/main.cc.s
+.PHONY : src/Player/main.cc.s
 
 # Help Target
 help:
@@ -514,6 +612,8 @@ help:
 	@echo "... package_source"
 	@echo "... rebuild_cache"
 	@echo "... update_mappings"
+	@echo "... brr_core"
+	@echo "... brr_player"
 	@echo "... brredit"
 	@echo "... glfw"
 	@echo "... imgui"
@@ -537,18 +637,27 @@ help:
 	@echo "... lib/rlImGui/rlImGui.o"
 	@echo "... lib/rlImGui/rlImGui.i"
 	@echo "... lib/rlImGui/rlImGui.s"
-	@echo "... src/Editor.o"
-	@echo "... src/Editor.i"
-	@echo "... src/Editor.s"
-	@echo "... src/File.o"
-	@echo "... src/File.i"
-	@echo "... src/File.s"
-	@echo "... src/GameObject.o"
-	@echo "... src/GameObject.i"
-	@echo "... src/GameObject.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... src/Core/Camera.o"
+	@echo "... src/Core/Camera.i"
+	@echo "... src/Core/Camera.s"
+	@echo "... src/Core/File.o"
+	@echo "... src/Core/File.i"
+	@echo "... src/Core/File.s"
+	@echo "... src/Core/GameObject.o"
+	@echo "... src/Core/GameObject.i"
+	@echo "... src/Core/GameObject.s"
+	@echo "... src/Editor/Editor.o"
+	@echo "... src/Editor/Editor.i"
+	@echo "... src/Editor/Editor.s"
+	@echo "... src/Editor/main.o"
+	@echo "... src/Editor/main.i"
+	@echo "... src/Editor/main.s"
+	@echo "... src/Player/Player.o"
+	@echo "... src/Player/Player.i"
+	@echo "... src/Player/Player.s"
+	@echo "... src/Player/main.o"
+	@echo "... src/Player/main.i"
+	@echo "... src/Player/main.s"
 .PHONY : help
 
 

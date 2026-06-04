@@ -115,7 +115,9 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/brr_core.dir/DependInfo.cmake"
   "CMakeFiles/brredit.dir/DependInfo.cmake"
+  "CMakeFiles/brr_player.dir/DependInfo.cmake"
   "CMakeFiles/imgui.dir/DependInfo.cmake"
   "CMakeFiles/rlImGui.dir/DependInfo.cmake"
   "lib/raylib/raylib/CMakeFiles/raylib.dir/DependInfo.cmake"

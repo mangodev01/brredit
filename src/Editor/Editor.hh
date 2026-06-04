@@ -3,7 +3,8 @@
 #include <raylib.h>
 #include <imgui.h>
 
-#include "GameObject.hh"
+#include "Core/GameObject.hh"
+#include "Core/Camera.hh"
 
 namespace BrrEdit {
 	class Editor {
@@ -26,7 +27,6 @@ namespace BrrEdit {
 			inline void ApplyCatppuccinMocha() {
 				ImGuiStyle& style = ImGui::GetStyle();
 
-				// Rounding
 				style.WindowRounding   = 10.0f;
 				style.FrameRounding    = 5.0f;
 				style.PopupRounding    = 12.0f;
@@ -35,7 +35,6 @@ namespace BrrEdit {
 				style.TabRounding      = 12.0f;
 				style.ChildRounding    = 12.0f;
 
-				// Spacing
 				style.WindowPadding  = { 10.0f, 10.0f };
 				style.FramePadding   = { 8.0f, 8.0f };
 				style.ItemSpacing    = { 10.0f, 10.0f };
@@ -43,7 +42,6 @@ namespace BrrEdit {
 				style.ScrollbarSize  = 16.0f;
 				style.Alpha          = 1.0f;
 
-				// Colors
 				ImVec4* c = style.Colors;
 				c[ImGuiCol_Text]                  = { 0.804f, 0.839f, 0.957f, 1.0f };
 				c[ImGuiCol_TextDisabled]          = { 0.729f, 0.761f, 0.871f, 1.0f };
@@ -107,9 +105,10 @@ namespace BrrEdit {
 		private:
 			int m_Width;
 			int m_Height;
-			Camera3D m_ViewportCam;
+			Camera m_Camera;
 			RenderTexture2D m_Viewport;
 			Room m_Room;
 			bool m_Wireframe = true;
+			bool m_CursorDisabled = false;
 	};
 }

@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_GLFW_X11
 
-C_INCLUDES = -I/home/illia/proj/games/brredit/lib/raylib/src -I/home/illia/proj/games/brredit/lib/imgui -I/home/illia/proj/games/brredit/lib/rlImGui -I/home/illia/proj/games/brredit/lib -isystem /home/illia/proj/games/brredit/lib/raylib/src/external/glfw/include
+C_INCLUDES = -I/home/illia/proj/games/brredit/src -I/home/illia/proj/games/brredit/lib/raylib/src -I/home/illia/proj/games/brredit/lib/imgui -I/home/illia/proj/games/brredit/lib/rlImGui -I/home/illia/proj/games/brredit/lib -isystem /home/illia/proj/games/brredit/lib/raylib/src/external/glfw/include
 
 C_FLAGS = -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -g -std=gnu99
 

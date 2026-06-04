@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbrr_core.a CMakeFiles/brr_core.dir/src/Core/Camera.cc.o CMakeFiles/brr_core.dir/src/Core/File.cc.o CMakeFiles/brr_core.dir/src/Core/GameObject.cc.o
+/usr/bin/ranlib libbrr_core.a

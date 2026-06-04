@@ -1,7 +1,7 @@
 #include "Editor.hh"
 
-#include "GameObject.hh"
-#include "Globals.hh"
+#include "Core/GameObject.hh"
+#include "Core/Globals.hh"
 #include "extras/IconsFontAwesome6.h"
 #include <format>
 #include <raymath.h>
@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <cfloat>
 #include <raylib.h>
+#include <rlgl.h>
 #include <rlImGui.h>
 
 #include <imgui.h>
@@ -23,12 +24,7 @@ namespace BrrEdit {
 
 		InitAudioDevice();
 
-		m_ViewportCam = {0};
-		m_ViewportCam.position = {10.0f, 10.0f, 10.0f};
-		m_ViewportCam.target = {0.0f, 0.0f, 0.0f};
-		m_ViewportCam.up = {0.0f, 1.0f, 0.0f};
-		m_ViewportCam.fovy = 45.0f;
-		m_ViewportCam.projection = CAMERA_PERSPECTIVE;
+		m_Camera.Reset();
 
 		SetTargetFPS(100);
 
@@ -86,7 +82,6 @@ namespace BrrEdit {
 	}
 
 	void Editor::RenderImGui() {
-		// Snapshot key state BEFORE rlImGuiBegin consumes IsKeyPressed events
 		bool tabPressed = IsKeyPressed(KEY_TAB);
 		bool fPressed = IsKeyPressed(KEY_F);
 
@@ -106,9 +101,7 @@ namespace BrrEdit {
 
 		ImGuiIO& io = ImGui::GetIO();
 
-		if (g_CursorDisabled) {
-			// When cursor is locked, prevent ImGui from overriding cursor and
-			// push mouse far away to avoid spurious hover/click on UI widgets
+		if (m_CursorDisabled) {
 			io.ConfigFlags |= ImGuiConfigFlags_NoMouseCursorChange;
 			io.AddMousePosEvent(-FLT_MAX, -FLT_MAX);
 		} else {
@@ -122,16 +115,14 @@ namespace BrrEdit {
 
 		ImGui::Begin("Viewport");
 
-		// mouse locking
 		if (ImGui::IsWindowHovered() &&
 			ImGui::IsMouseClicked(ImGuiMouseButton_Left)) {
 			DisableCursor();
-			g_CursorDisabled = true;
+			m_CursorDisabled = true;
 		}
 
 		RenderRaylibWrapper();
 
-		// Render scene into texture
 		BeginTextureMode(m_Viewport);
 
 		RenderRaylib(tabPressed, fPressed);
@@ -387,73 +378,30 @@ namespace BrrEdit {
 			g_Wireframe = !g_Wireframe;
 		}
 
-		Vector2 mouse = g_CursorDisabled ? GetMouseDelta() : Vector2{0, 0};
+		Vector2 mouse = m_CursorDisabled ? GetMouseDelta() : Vector2{0, 0};
 
-		Vector3 dir =
-			Vector3Subtract(m_ViewportCam.target, m_ViewportCam.position);
-		Vector3 right =
-			Vector3Normalize(Vector3CrossProduct(dir, m_ViewportCam.up));
-
-		dir =
-			Vector3RotateByAxisAngle(dir, {0, 1, 0}, -mouse.x * c_Sensitivity);
-
-		Vector3 pitched =
-			Vector3RotateByAxisAngle(dir, right, -mouse.y * c_Sensitivity);
-		if (fabsf(Vector3DotProduct(Vector3Normalize(pitched), {0, 1, 0})) <
-			0.99f)
-			dir = pitched;
-
-		m_ViewportCam.target = Vector3Add(m_ViewportCam.position, dir);
-
-		Vector3 forward = Vector3Normalize(dir);
-
-		auto move = [&](Vector3 delta) {
-			m_ViewportCam.position = Vector3Add(m_ViewportCam.position, delta);
-			m_ViewportCam.target = Vector3Add(m_ViewportCam.target, delta);
-		};
+		m_Camera.Update(GetFrameTime(), mouse, IsKeyDown(KEY_CAPS_LOCK));
 
 		if (tabPressed) {
 			EnableCursor();
-			g_CursorDisabled = false;
+			m_CursorDisabled = false;
 		}
 
-		float dt = GetFrameTime();
-
-		if (g_CursorDisabled) {
-			const float speed =
-				IsKeyDown(KEY_CAPS_LOCK) ? c_FasterSpeed : c_Speed;
-
-			if (IsKeyDown(KEY_W))
-				move(Vector3Scale(forward, speed * dt));
-			if (IsKeyDown(KEY_S))
-				move(Vector3Scale(forward, -speed * dt));
-			if (IsKeyDown(KEY_A))
-				move(Vector3Scale(right, -speed * dt));
-			if (IsKeyDown(KEY_D))
-				move(Vector3Scale(right, speed * dt));
-			if (IsKeyDown(KEY_SPACE))
-				move({0, speed * dt, 0});
-			if (IsKeyDown(KEY_LEFT_SHIFT))
-				move({0, -speed * dt, 0});
-
-			if (IsKeyDown(KEY_ZERO)) {
-				m_ViewportCam.position = {10.0f, 10.0f, 10.0f};
-				m_ViewportCam.target = {0.0f, 0.0f, 0.0f};
-			}
+		if (IsKeyDown(KEY_ZERO)) {
+			m_Camera.Reset();
 		}
 
-		// account for 2x downscaling
 		DrawFPS(10 * 2, 10 * 2);
 
-		BeginMode3D(m_ViewportCam);
+		m_Room.RenderUI();
+
+		BeginMode3D(m_Camera.Cam);
 
 		this->DrawGrid(100, 1);
 
 		m_Room.Render();
 
 		EndMode3D();
-
-		m_Room.RenderUI();
 	}
 
 	void Editor::DrawGrid(int slices, float spacing) {
@@ -473,6 +421,6 @@ namespace BrrEdit {
 	}
 
 	void Editor::Update() {
-		m_Room.Update(m_ViewportCam);
+		m_Room.Update(m_Camera.Cam);
 	}
-}  // namespace BrrEdit
+}

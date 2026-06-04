@@ -213,6 +213,9 @@ namespace BrrEdit {
 			void AddSound();
 			void AddUI();
 
+			void SaveTo(const std::string& path);
+			void LoadFrom(const std::string& path);
+
 			void Save();
 			void Load();
 

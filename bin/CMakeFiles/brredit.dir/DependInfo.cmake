@@ -8,10 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/illia/proj/games/brredit/src/Editor.cc" "CMakeFiles/brredit.dir/src/Editor.cc.o" "gcc" "CMakeFiles/brredit.dir/src/Editor.cc.o.d"
-  "/home/illia/proj/games/brredit/src/File.cc" "CMakeFiles/brredit.dir/src/File.cc.o" "gcc" "CMakeFiles/brredit.dir/src/File.cc.o.d"
-  "/home/illia/proj/games/brredit/src/GameObject.cc" "CMakeFiles/brredit.dir/src/GameObject.cc.o" "gcc" "CMakeFiles/brredit.dir/src/GameObject.cc.o.d"
-  "/home/illia/proj/games/brredit/src/main.cc" "CMakeFiles/brredit.dir/src/main.cc.o" "gcc" "CMakeFiles/brredit.dir/src/main.cc.o.d"
+  "/home/illia/proj/games/brredit/src/Editor/Editor.cc" "CMakeFiles/brredit.dir/src/Editor/Editor.cc.o" "gcc" "CMakeFiles/brredit.dir/src/Editor/Editor.cc.o.d"
+  "/home/illia/proj/games/brredit/src/Editor/main.cc" "CMakeFiles/brredit.dir/src/Editor/main.cc.o" "gcc" "CMakeFiles/brredit.dir/src/Editor/main.cc.o.d"
   "" "brredit" "gcc" "CMakeFiles/brredit.dir/link.d"
   )
 
